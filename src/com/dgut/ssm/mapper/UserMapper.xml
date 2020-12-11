@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dgut.ssm.dao.UserDao">
+<!--    public User getUserByName(String userName);-->
+    <select id="getUserByName" resultType="com.dgut.ssm.bean.User">
+    SELECT * FROM users WHERE user_name = #{userName} ;
+    </select>
+</mapper>

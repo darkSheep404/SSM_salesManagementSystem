@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dgut.ssm.dao.GoodsDao">
+<!--    public Goods getGoodsById(Integer id);-->
+    <select id="getGoodsById" resultType="com.dgut.ssm.bean.Goods">
+    SELECT goods_id goodsId,name,price,quantity,on_sale onSale FROM goods WHERE goods_id= #{id} ;
+    </select>
+<!--    public void update(Goods goods);-->
+    <update id="update">
+        UPDATE goods set `name`=#{name},price=#{price},quantity=#{quantity}, on_sale=#{onSale} WHERE goods_id=#{goodsId}
+    </update>
+<!--    public List<Goods> getAnnGods();-->
+    <select id="getAllGods" resultType="com.dgut.ssm.bean.Goods">
+        SELECT goods_id goodsId,name,price,quantity, on_sale FROM goods
+    </select>
+    <!--public int DelGoodsById(Integer id);-->
+    <delete id="DelGoodsById">
+        DELETE FROM goods WHERE goods_id=#{id};
+    </delete>
+<!--    public void AddGoods(Goods goods);-->
+<insert id="AddGoods" parameterType="com.dgut.ssm.bean.Goods" keyProperty="goodsId" >
+INSERT INTO goods(goods_id,`name`,price,quantity) VALUES (#{goodsId},#{name},#{price},#{quantity});
+</insert>
+
+</mapper>

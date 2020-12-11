@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--    setting等节点要按顺序放....mappers最后，setting最前...-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <!--<typeAliases>
+        <package name="mybaits"/>
+    </typeAliases>-->
+    <!--给mybaits即实体类包下所有类取别名，使用的时候可以直接用类名-->
+    <!-- <mappers>
+         手动指定一个mapper文件所在位置
+        <mapper resource="mapper/MemberMapper.xml"/>
+        指定mapper和dao文件都在一个包下，现在application里面有配置
+         <package name="com.dgut.ssm"/>
+     </mappers>-->
+</configuration>

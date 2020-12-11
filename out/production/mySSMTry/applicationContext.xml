@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybaits-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+<!--        组件扫描-->
+    <context:component-scan base-package="com.dgut.ssm">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+<!-- 数据源-->
+<context:property-placeholder location="classpath:db.properties"/>
+    <bean id="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.Url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="DataSource" ref="datasource"></property>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+<!--    spring整合mybaits-->
+    <!--mybaits的SqlSession的创建-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--mybaits全局配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!--数据源-->
+        <property name="dataSource" ref="datasource"></property>
+        <!--mybaits的SQL映射文件-->
+        <property name="mapperLocations" value="classpath:com/dgut/ssm/mapper/*.xml"></property>
+<!--        <property name="typeAliasesPackage" value=""></property>-->
+    </bean>
+
+<!--    mybaits的数据代理接口的实现类-->
+    <mybaits-spring:scan base-package="com.dgut.ssm.dao"/>
+
+</beans>

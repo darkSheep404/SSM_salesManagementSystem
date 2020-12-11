@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ssm">
+    <CLASSES>
+      <root url="file://D:/code_repo/ssm" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://D:/code_repo/ssm" recursive="false" />
+  </library>
+</component>
