@@ -24,7 +24,6 @@ public class GoodsConttoller {
         List<Goods> goods = service.getAllGoods();
         model.addAttribute("goods", goods);
         return "goodList";
-
     }
 
     @GetMapping("/edit/{id}")

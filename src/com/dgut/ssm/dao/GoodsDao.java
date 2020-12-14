@@ -12,4 +12,5 @@ public interface GoodsDao {
     public List<Goods> getAllGods();
     public int DelGoodsById(Integer id);
     public void AddGoods(Goods goods);
+
 }

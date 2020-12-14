@@ -29,7 +29,7 @@ class GoodsDaoTest {
     void testAll(){
         System.out.println(session);
         GoodsDao dao=session.getMapper(GoodsDao.class);
-       List<Goods>  goods=dao.getAllGods();
+        List<Goods>  goods=dao.getAllGods();
         System.out.println(goods);
     }
     @Test
@@ -43,14 +43,14 @@ class GoodsDaoTest {
     }
     @BeforeEach
     public void init()
-{
-    context=new ClassPathXmlApplicationContext("applicationContext.xml");
-    SqlSessionFactory sqlSessionFactory=context.getBean("sqlSessionFactory",SqlSessionFactory.class);
-    session=sqlSessionFactory.openSession();
-}
-@AfterEach
+    {
+        context=new ClassPathXmlApplicationContext("applicationContext.xml");
+        SqlSessionFactory sqlSessionFactory=context.getBean("sqlSessionFactory",SqlSessionFactory.class);
+        session=sqlSessionFactory.openSession();
+    }
+    @AfterEach
     public void  close()
-{
-    session.close();
-}
+    {
+        session.close();
+    }
 }

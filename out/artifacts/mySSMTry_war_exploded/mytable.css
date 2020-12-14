@@ -1,0 +1,68 @@
+
+.taleContainer {
+    background-color: #fff;
+    text-align: center;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dcdfe6;
+    padding: 15px;
+}
+
+/*一个不太好看的button的css*/
+button {
+    width: 60px;
+    align-self: flex-end;
+    height: 35px;
+    font-size: 14px;
+    border-radius: 7px;
+    color: white;
+    background-color: #409eff;
+    border: 1px solid #d9d9d9;
+    text-decoration: none;
+}
+
+/*按钮里的超链接*/
+.button-href {
+    color: #fff;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+}
+
+th {
+    color: #606266;
+    text-align: center;
+    width: 200px;
+    overflow: hidden;
+    padding-top: 12px;
+    padding-right: 0px;
+    padding-bottom: 12px;
+    padding-left: 0px;
+}
+
+td {
+    color: #606266;
+    text-align: center;
+    padding-top: 12px;
+    padding-right: 0px;
+    padding-bottom: 12px;
+    padding-left: 0px;
+}
+
+tr {
+
+    border: 1px solid #606266;
+}

@@ -32,7 +32,7 @@
     color: white;
 ">菜鸟商品管理系统</h4>
   <a href="${pageContext.request.contextPath  }/goods/list" class="bar">商品管理</a>
-  <a href="${pageContext.request.contextPath  }/goods/list" class="bar">合同管理</a>
+  <a href="${pageContext.request.contextPath  }/contact/list" class="bar">合同管理</a>
   <a href="${pageContext.request.contextPath  }/goods/list" class="bar">仓库管理员管理</a>
   <a href="WEB-INF/views/goodsAdd.jsp">链接跳转添加</a>
   </body>
