@@ -11,8 +11,15 @@
 <head>
     <title>Title</title>
     <link type="text/css" rel="styleSheet"  href="../../mytable.css" />
+    <link type="text/css" rel="styleSheet"  href="../../leftBar.css" />
 </head>
 <body>
+<div class="leftBar">
+    <div class="leftLink"><a href="${pageContext.request.contextPath}/contact/list" class="button-href">合同管理</a></div>
+    <div class="leftLink"><a href="${pageContext.request.contextPath}/goods/list" class="button-href">商品管理</a></div>
+    <div class="leftLink"><a href="${pageContext.request.contextPath}/forms/list" class="button-href">发货管理</a></div>
+</div>
+<div class="middle">
 <div class="taleContainer">
 <h4>合同清单</h4>
 <button ><a href="${pageContext.request.contextPath }/goods/goodsAdd" class="button-href">添加</a></button>
@@ -41,16 +48,17 @@
         </tr>
     </c:forEach>
 </table>
+
 </div>
 <div class="taleContainer">
 <h4>采购清单</h4>
-<table border="1" cellpadding="0" cellspacing="3">
+<table >
     <th>合同id</th>
     <th>采购单Id</th>
     <th>商品Id</th>
     <th>商品数量</th>
     <th>已生成发货单</th>
-    <th>已经发货</th>
+    <th>操作</th>
     <c:forEach items="${requestScope.contacts}" var="co">
         <c:forEach items="${co.salesForms}" var="s">
                 <tr>
@@ -59,11 +67,16 @@
                     <td>${s.goodsId}</td>
                     <td>${s.quantity}</td>
                     <td>${s.generateStatus}</td>
-                    <td>${s.deliveryStatus}</td>
+                    <td><button style="width: auto" >
+                        <%--需要比较商品库存，采购的商品数目,更改合同属性，与当前表单完成状态，需要使用除表单id外所有属性--%>
+                           <%-- <a href="${pageContext.request.contextPath}/contact/run/${co.contactId}/${s.quantity}/${s.goodsId}"/>--%>
+                            <a class="button-href" href="${pageContext.request.contextPath}/contact/run/${s.formId}">生成发货单</a>
+                    </button></td>
                 </tr>
         </c:forEach>
     </c:forEach>
 </table>
+</div>
 </div>
 </body>
 </html>

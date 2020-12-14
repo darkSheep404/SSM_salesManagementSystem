@@ -13,7 +13,7 @@ public class ContactService {
     private ContactDao dao;
     public List<Contact> getAllContact(){
         List<Contact> contacts= dao.getAllContact();
-        System.out.println("service:---->\n"+contacts);
+        System.out.println(contacts);
         return contacts;
     }
 }

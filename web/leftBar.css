@@ -1,0 +1,24 @@
+body{
+    display: flex;
+}
+.leftBar{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+/*justify-content: center;*/
+    align-items: center;
+    background-color: #8AC63F;
+    height: fit-content;
+}
+.leftLink{
+    height: 56px;
+    line-height: 56px;
+    color: #303133;
+    background-color: #8AC63F;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 5px;
+}
+.middle{
+    display: flex;
+    flex-direction: column;
+}

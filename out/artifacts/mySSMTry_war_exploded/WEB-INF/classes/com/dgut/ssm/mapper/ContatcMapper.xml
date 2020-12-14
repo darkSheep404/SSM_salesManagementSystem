@@ -41,6 +41,7 @@ LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  O
     <resultMap id="ContactByIdWithAll" type="com.dgut.ssm.bean.Contact">
         <id column="contact_id" property="contactId"></id>
         <result column="notdelivery" property="notdelivery"></result>
+        <result column="run_status" property="runStatus"></result>
         <association property="salesman" javaType="com.dgut.ssm.bean.Salesman">
             <id column="salesman_id" property="salesmanId"></id>
             <result column="salesman_name" property="salesmanName"></result>
@@ -67,5 +68,8 @@ LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  O
 ((contact co LEFT JOIN custom cu ON co.custom_id=cu.custom_id)
 LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  ON sf.contact_id=co.contact_id;
     </select>
-    
+    <!--    public void reduceUnfinishedNum(Integer id);//减少合同里的未发货数量-->
+    <update id="reduceUnfinishedNum">
+        UPDATE contact SET notdelivery = notdelivery-1,run_status=1 WHERE contact_id=#{id};
+    </update>
 </mapper>

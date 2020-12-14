@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dgut.ssm.dao.FormDao">
+<!--    public void runForm(Integer id);//生成发货单-->
+    <update id="runForm">
+        UPDATE salesform SET generate_status=1 WHERE form_id =#{id};
+    </update>
+<!--    public void finishForm(Integer id);//完成发货-->
+    <update id="finishForm">
+        UPDATE salesform SET delivery_status=1 WHERE form_id =#{id};
+    </update>
+
+<!--    public Integer getQuantityById(Integer id);//获取本单商品数量-->
+    <select id="getQuantityById" resultType="Integer">
+        SELECT quantity FROM salesform WHERE form_id=#{id};
+    </select>
+<!--    public Integer getGoodsIdById(Integer id);//获取本单商品id-->
+    <select id="getGoodsIdById" resultType="Integer">
+        SELECT goods_id FROM salesform WHERE form_id=#{id};
+    </select>
+<!--    public Integer getContactidById(Integer id);-->
+    <select id="getContactidById" resultType="Integer">
+        SELECT contact_id FROM salesform WHERE form_id=#{id};
+    </select>
+<!--    public List<SalesForm> getAllRunningForm();-->
+    <select id="getAllRunningForm" resultType="com.dgut.ssm.bean.SalesForm">
+        SELECT * FROM salesform WHERE generate_status=1 AND delivery_status=0;
+    </select>
+<!--    public SalesForm getFormById(Integer id);-->
+    <select id="getFormById" resultType="com.dgut.ssm.bean.SalesForm">
+        SELECT * FROM salesform WHERE form_id=#{id};
+    </select>
+<!--    public void InsertLog(SaleLog log);-->
+    <insert id="InsertLog" parameterType="com.dgut.ssm.bean.SaleLog">
+        INSERT INTO `ssmtest`.`saleslog`(`id`, `date`, `goods_id`, `quantity`) VALUES (#{id},#{date},#{goodsId},#{quantity})
+    </insert>
+    <!--    public List<SaleLog> getAllLog();-->
+    <select id="getAllLog" resultType="com.dgut.ssm.bean.SaleLog">
+         SELECT * FROM saleslog;
+    </select>
+</mapper>

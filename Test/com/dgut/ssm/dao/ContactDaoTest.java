@@ -1,5 +1,6 @@
 package com.dgut.ssm.dao;
 
+import com.dgut.ssm.service.FormService;
 import com.mysql.cj.Session;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,6 +23,8 @@ class ContactDaoTest {
         //System.out.println(dao.getContactByIdWithPerson(101));
         System.out.println(dao.getAllContact());
     }
+
+
     @BeforeEach
     public void init()
     {

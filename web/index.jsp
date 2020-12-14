@@ -1,39 +1,31 @@
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
-  Date: 2020/11/30
-  Time: 16:25
+  Date: 2020/12/11
+  Time: 17:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>菜鸡管理系统</title>
-    <style type="text/css">
-      body{
-        background: black;
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-      }
-      .bar{
-        text-align: center;
-        background: blue;
-        display: block;
-        width: 300px;
-        color: white;
-        }
-
+<head>
+  <title>登陆页面</title>
+<style>
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
-  </head>
-  <body>
-  <h4 style="
-    color: white;
-">菜鸟商品管理系统</h4>
-  <a href="${pageContext.request.contextPath  }/goods/list" class="bar">商品管理</a>
-  <a href="${pageContext.request.contextPath  }/contact/list" class="bar">合同管理</a>
-  <a href="${pageContext.request.contextPath  }/goods/list" class="bar">仓库管理员管理</a>
-  <a href="WEB-INF/views/goodsAdd.jsp">链接跳转添加</a>
-  </body>
+  <link type="text/css" rel="styleSheet"  href="myForm.css"/>
+</head>
+<body>
+<div class="form-warpper">
+<form action="${pageContext.request.contextPath}/goods/login" method="post">
+  <h3>销售管理系统登录</h3>
+  <div class="label">用户名</div><input type="text" name="userName"/><br>
+  <div class="label">密码</div><input type="password" name="passWord"/><br>
+  <button type="submit">提交</button>
+</form>
+</div>
+</body>
 </html>

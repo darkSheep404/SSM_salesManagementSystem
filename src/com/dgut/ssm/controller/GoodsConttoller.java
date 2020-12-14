@@ -52,8 +52,8 @@ public class GoodsConttoller {
     @GetMapping("del/{id}")
     public String del(@PathVariable("id") Integer id) {
         service.delGoodsByid(id);
-        //TODO 拿回来的model是啥？,处理请求的函数一定要写这个参数吗？还是从页面中存取东西就不用:打印得此处拿到了空的
-        //model就是页面，要往页面存取东西才要加model
+
+        //TODO model就是页面，要往页面存取东西才要加model
         return "redirect:/goods/list";
     }
 

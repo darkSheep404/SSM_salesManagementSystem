@@ -12,16 +12,21 @@
 
     <title>Title</title>
     <link type="text/css" rel="styleSheet"  href="../../mytable.css" />
+    <link type="text/css" rel="styleSheet"  href="../../leftBar.css" />
 
 </head>
 <body>
-
+<div class="leftBar">
+    <div class="leftLink"><a href="${pageContext.request.contextPath}/contact/list" class="button-href">合同管理</a></div>
+    <div class="leftLink"><a href="${pageContext.request.contextPath}/goods/list" class="button-href">商品管理</a></div>
+    <div class="leftLink"><a href="${pageContext.request.contextPath}/forms/list" class="button-href">发货管理</a></div>
+</div>
 <%--<a href="${pageContext.request.contextPath}/goods/goodsAdd">添加</a>--%>
-
+<div class="middle">
 <div class="taleContainer">
     <h4>商品清单</h4>
     <button onclick="window.open('${pageContext.request.contextPath}/goods/goodsAdd','商品添加','height=700,width=1000,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no')">添加</button>
-    <table border="1" cellpadding="0" cellspacing="3">
+    <table>
     <c:if test="${requestScope.goods == null}">
         没有
     </c:if>
@@ -46,6 +51,7 @@
         </tr>
     </c:forEach>
 </table>
+</div>
 </div>
 </body>
 </html>

@@ -11,5 +11,6 @@ public interface ContactDao {
     public Contact getContactByIdWithForm(Integer id);//带采购单的查询
     public Contact getContactByIdWithAll(Integer id);//携带所有信息的查询
     public List<Contact> getAllContact();//查询全部合同列表
+    public void reduceUnfinishedNum(Integer id);//减少合同里的未发货数量
 
 }

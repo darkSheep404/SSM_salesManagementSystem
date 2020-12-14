@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dgut.ssm.dao.GoodsDao">
-<!--    public Goods getGoodsById(Integer id);-->
+    <!--    public Goods getGoodsById(Integer id);-->
     <select id="getGoodsById" resultType="com.dgut.ssm.bean.Goods">
     SELECT goods_id goodsId,name,price,quantity,on_sale onSale FROM goods WHERE goods_id= #{id} ;
     </select>
-<!--    public void update(Goods goods);-->
+    <!--    public void update(Goods goods);-->
     <update id="update">
         UPDATE goods set `name`=#{name},price=#{price},quantity=#{quantity}, on_sale=#{onSale} WHERE goods_id=#{goodsId}
     </update>
-<!--    public List<Goods> getAnnGods();-->
+    <!--    public List<Goods> getAnnGods();-->
     <select id="getAllGods" resultType="com.dgut.ssm.bean.Goods">
         SELECT goods_id goodsId,name,price,quantity, on_sale FROM goods
     </select>
@@ -20,9 +20,16 @@
     <delete id="DelGoodsById">
         DELETE FROM goods WHERE goods_id=#{id};
     </delete>
-<!--    public void AddGoods(Goods goods);-->
-<insert id="AddGoods" parameterType="com.dgut.ssm.bean.Goods" keyProperty="goodsId" >
+    <!--    public void AddGoods(Goods goods);-->
+    <insert id="AddGoods" parameterType="com.dgut.ssm.bean.Goods" keyProperty="goodsId">
 INSERT INTO goods(goods_id,`name`,price,quantity) VALUES (#{goodsId},#{name},#{price},#{quantity});
 </insert>
-
+    <!--    public Integer getQuantityById(Integer id);-->
+    <select id="getQuantityById" resultType="Integer">
+SELECT quantity FROM goods WHERE goods_id=#{id};
+</select>
+    <!--    public Integer reduceQuantityById(@Param("id") Integer id,@Param("num") Integer num);-->
+    <update id="reduceQuantityById">
+        UPDATE goods SET quantity = (quantity-#{num})  WHERE goods_id=#{id};
+    </update>
 </mapper>
