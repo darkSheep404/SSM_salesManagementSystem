@@ -18,6 +18,17 @@ public class Goods {
         this.onSale = onSale;
     }
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", onSale=" + onSale +
+                '}';
+    }
+
     public Integer getGoodsId() {
         return goodsId;
     }

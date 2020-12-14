@@ -16,3 +16,6 @@ From github.com:SFAfreshman/SSM_salesManagementSystem
  * [new branch]      master     -> origin/master
 ```
 > >可尝试建立空仓库直接push覆盖？或者也要先pull
+### v0.2
+> 调整了form表单和表格的样式
+> 实现了合同类的关联查询

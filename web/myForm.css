@@ -1,0 +1,40 @@
+button {
+    width: 60px;
+    align-self: flex-end;
+    height: 35px;
+    font-size: 14px;
+    border-radius: 7px;
+    color: white;
+    background-color: #409eff;
+    border: 1px solid #d9d9d9;
+    text-decoration: none;
+}
+
+.label{
+    display: inline-block;
+    float: left;
+    width: 80px;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 40px;
+    vertical-align: center
+}
+input{
+    height: 40px;
+    border: 1px solid #dcdfe6;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+form{
+    margin: auto;
+    padding-top: 24px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    width: fit-content;
+}
+.form-warpper{
+    text-align: center;
+}

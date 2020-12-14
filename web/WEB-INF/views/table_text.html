@@ -1,0 +1,113 @@
+
+<html><head>
+    <title>Title</title>
+    <style>
+        .taleContainer{
+            background-color: #fff;
+            text-align: center;
+            width: fit-content;
+            display: flex;
+            flex-direction: column
+        }
+        /*一个不太好看的button的css*/
+        button{
+            width: 60px;
+            align-self: flex-end;
+            height: 35px;
+            font-size: 14px;
+            border-radius: 7px;
+            color: #3c2b2b;
+            background-color: #409eff;
+            border: 1px solid #d9d9d9;
+            text-decoration: none;
+        }
+        /*按钮里的超链接*/
+        .button-href{
+            color: #fff;
+            text-decoration: none;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        th{
+            color:#606266;
+            text-align:center;
+            width:200px;
+            overflow:hidden;
+            padding-top: 12px;
+            padding-right: 0px;
+            padding-bottom: 12px;
+            padding-left: 0px;
+        }
+        td{
+            color:#606266;
+            text-align:center;
+            padding-top: 12px;
+            padding-right: 0px;
+            padding-bottom: 12px;
+            padding-left: 0px;
+            border-top:1px solid #606266;
+            margin:0px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="taleContainer">
+    <h4>合同清单</h4>
+    <button><a href="/goods/goodsAdd" class="button-href">添加</a></button>
+    <table>
+
+        <tbody><tr>
+            <th>ID</th>
+            <th>客户</th>
+            <th>销售员</th>
+            <th>未发货的发货单</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        <tr>
+            <td>101</td>
+            <td>赵先生</td>
+            <td>小周</td>
+            <td>5</td>
+            <td><a href="/goods/edit/">update</a> </td>
+            <td><a href="/goods/del/">delete</a> </td>
+        </tr>
+
+        </tbody></table>
+</div>
+<div class="taleContainer">
+    <h4>采购清单</h4>
+    <table border="1" cellpadding="0" cellspacing="3">
+        <tbody><tr><th>合同id</th>
+            <th>采购单Id</th>
+            <th>商品Id</th>
+            <th>商品数量</th>
+            <th>已生成发货单</th>
+            <th>已经发货</th>
+
+
+        </tr><tr>
+            <td>101</td>
+            <td>1</td>
+            <td>101</td>
+            <td>10</td>
+            <td>false</td>
+            <td>false</td>
+        </tr>
+
+        <tr>
+            <td>101</td>
+            <td>2</td>
+            <td>102</td>
+            <td>5</td>
+            <td>false</td>
+            <td>false</td>
+        </tr>
+
+
+        </tbody></table>
+</div>
+</body></html>

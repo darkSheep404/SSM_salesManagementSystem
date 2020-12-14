@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dgut.ssm.dao.ContactDao">
+    <!--    public Contact getContactById(Integer id);;-->
+    <select id="getContactById" resultType="com.dgut.ssm.bean.Contact">
+    SELECT contact_id,notdelivery FROM contact WHERE contact_id=#{id};
+    </select>
+<!--    public Contact getContactByIdWithPerson(Integer id);//带销售人员与客户的查询-->
+    
+    <select id="getContactByIdWithPerson" resultMap="ContactWithPerson">
+      SELECT co.contact_id,co.notdelivery,cu.custom_id,cu.custom_name,cu.custom_phone,cu.custom_company, s.salesman_id ,s.salesman_name,s.salesman_phone FROM
+(contact co LEFT JOIN custom cu ON co.custom_id=cu.custom_id)
+LEFT JOIN salesman s ON co.salesman_id= s.salesman_id WHERE co.contact_id=#{id}
+    </select>
+    <resultMap id="ContactWithPerson" type="com.dgut.ssm.bean.Contact">
+        <id column="contact_id" property="contactId"></id>
+        <result column="notdelivery" property="notdelivery"></result>
+        <association property="salesman" javaType="com.dgut.ssm.bean.Salesman">
+            <id column="salesman_id" property="salesmanId"></id>
+            <result column="salesman_name" property="salesmanName"></result>
+            <result column="salesman_phone" property="salesmanPhone"></result>
+        </association>
+        <association property="custom" javaType="com.dgut.ssm.bean.Custom">
+            <id column="custom_id" property="customId"></id>
+            <result column="custom_name" property="customName"/>
+            <result column="custom_phone" property="customPhone"/>
+            <result column="custom_company" property="customCompany"/>
+        </association>
+    </resultMap>
+
+<!--    public Contact getContactByIdWithForm(Integer id);//带采购单的查询-->
+<!--    public Contact getContactByIdWithAll(Integer id);//携带所有信息的查询-->
+    <select id="getContactByIdWithAll" resultMap="ContactByIdWithAll">
+        SELECT co.contact_id,co.notdelivery,cu.custom_id,cu.custom_name,cu.custom_phone,cu.custom_company, s.salesman_id ,s.salesman_name,s.salesman_phone,sf.contact_id,sf.form_id,sf.goods_id,sf.quantity,sf.generate_status,sf.delivery_status FROM 
+((contact co LEFT JOIN custom cu ON co.custom_id=cu.custom_id)
+LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  ON sf.contact_id=co.contact_id WHERE co.contact_id=#{id}
+    </select>
+    <resultMap id="ContactByIdWithAll" type="com.dgut.ssm.bean.Contact">
+        <id column="contact_id" property="contactId"></id>
+        <result column="notdelivery" property="notdelivery"></result>
+        <association property="salesman" javaType="com.dgut.ssm.bean.Salesman">
+            <id column="salesman_id" property="salesmanId"></id>
+            <result column="salesman_name" property="salesmanName"></result>
+            <result column="salesman_phone" property="salesmanPhone"></result>
+        </association>
+        <association property="custom" javaType="com.dgut.ssm.bean.Custom">
+            <id column="custom_id" property="customId"></id>
+            <result column="custom_name" property="customName"/>
+            <result column="custom_phone" property="customPhone"/>
+            <result column="custom_company" property="customCompany"/>
+        </association>
+        <collection property="salesForms" ofType="com.dgut.ssm.bean.SalesForm">
+            <id column="form_id" property="formId"/>
+            <result column="contact_id" property="contactId"/>
+            <result column="goods_id" property="goodsId"/>
+            <result column="quantity" property="quantity"/>
+            <result column="generate_status" property="generateStatus"/>
+            <result column="delivery_status" property="deliveryStatus"/>
+        </collection>
+    </resultMap>
+<!--    public List<Contact> getAllContact();//查询全部合同列表-->
+    <select id="getAllContact" resultMap="ContactByIdWithAll">
+        SELECT co.contact_id,co.notdelivery,co.run_status,cu.custom_id,cu.custom_name,cu.custom_phone,cu.custom_company, s.salesman_id ,s.salesman_name,s.salesman_phone,sf.contact_id,sf.form_id,sf.goods_id,sf.quantity,sf.generate_status,sf.delivery_status FROM
+((contact co LEFT JOIN custom cu ON co.custom_id=cu.custom_id)
+LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  ON sf.contact_id=co.contact_id;
+    </select>
+    
+</mapper>
