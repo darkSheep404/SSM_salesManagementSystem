@@ -1,6 +1,7 @@
 package com.dgut.ssm.controller;
 
 import com.dgut.ssm.bean.Goods;
+import com.dgut.ssm.bean.GoodsSearchCondition;
 import com.dgut.ssm.service.GoodsService;
 import com.dgut.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,7 @@ public class GoodsConttoller {
         service.updateGoods(goods);
         return "redirect:/goods/list";
     }
+
     @ModelAttribute
     public void prepareModel(@RequestParam(value = "goodsId", required = false) Integer id, HttpServletRequest request, Model model) {
         String servletPath = request.getServletPath();
@@ -73,9 +75,26 @@ public class GoodsConttoller {
         String res = userService.CheckUserByName(userName, passWord);
         if (res.equals("fail"))
             return "loginFail";
+        else if (res.equals("sales_admin"))
+            /*如果是销售管理员*/
+            return "redirect:/contact/list";
+
         else
-            /*return "goodList";这样写url还是login，而且没有拿到数据*/
-            //返回的目录是被拦截的，加上了前后缀，无法直接return到index，可以使用重定向和转发指令？
+            /*如果是仓库管理员*/
             return "redirect:/goods/list";
     }
+    @GetMapping("search")
+    public String search(GoodsSearchCondition goodsSearchCondition,Model model)
+    {
+       List<Goods> goods= service.searchGoodsByCondition(goodsSearchCondition);
+        model.addAttribute("goods", goods);
+        return "goodList";
+    }
+    //    ---------------------进货管理-----------------------------
+    @GetMapping("disable/{id}")
+    public String disable(@PathVariable("id") Integer id) {
+        service.disable(id);
+        return "redirect:/goods/list";
+    }
+
 }

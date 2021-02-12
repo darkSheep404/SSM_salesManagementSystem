@@ -3,17 +3,21 @@ package com.dgut.ssm.bean;
 import java.util.List;
 
 public class Contact {
-    private int contactId;
+    private Integer contactId;
     private Integer notdelivery;
     private Custom custom;
     private Salesman salesman;
     private List<SalesForm> salesForms;
     private boolean runStatus;//履行状态
-    public int getContactId() {
+
+
+
+
+    public Integer getContactId() {
         return contactId;
     }
 
-    public void setContactId(int contactId) {
+    public void setContactId(Integer contactId) {
         this.contactId = contactId;
     }
 

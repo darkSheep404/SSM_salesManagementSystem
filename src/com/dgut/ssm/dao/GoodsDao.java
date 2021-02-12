@@ -1,6 +1,7 @@
 package com.dgut.ssm.dao;
 
 import com.dgut.ssm.bean.Goods;
+import com.dgut.ssm.bean.GoodsSearchCondition;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,8 @@ public interface GoodsDao {
     public void AddGoods(Goods goods);
     public Integer getQuantityById(Integer id);
     public Integer reduceQuantityById(@Param("id") Integer id,@Param("num") Integer num);
+    public Integer addQuantityById(@Param("id") Integer id,@Param("num") Integer num);
+    public void disable(Integer id);
+    /*动态查询*/
+    public List<Goods> searchGoodsByCondition(GoodsSearchCondition goodsSearchCondition);
 }

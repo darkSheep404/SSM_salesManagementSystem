@@ -1,6 +1,7 @@
 package com.dgut.ssm.service;
 
 import com.dgut.ssm.bean.Goods;
+import com.dgut.ssm.bean.GoodsSearchCondition;
 import com.dgut.ssm.dao.GoodsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,13 @@ public class GoodsService {
     public void AddGoods(Goods goods)
     {
         dao.AddGoods(goods);
+    }
+    public void disable(Integer id)
+    {
+        dao.disable(id);
+    }
+    public List<Goods> searchGoodsByCondition(GoodsSearchCondition goodsSearchCondition)
+    {
+        return dao.searchGoodsByCondition(goodsSearchCondition);
     }
 }

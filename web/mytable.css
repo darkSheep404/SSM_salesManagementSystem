@@ -8,10 +8,16 @@
     border: 1px solid #dcdfe6;
     padding: 15px;
 }
-
+.spanLabel{
+    width: 80px;
+}
+.search{
+    display: flex;
+    flex-wrap: wrap;
+}
 /*一个不太好看的button的css*/
 button {
-    width: 60px;
+    width: auto;
     align-self: flex-end;
     height: 35px;
     font-size: 14px;

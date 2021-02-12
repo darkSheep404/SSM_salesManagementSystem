@@ -32,4 +32,35 @@ SELECT quantity FROM goods WHERE goods_id=#{id};
     <update id="reduceQuantityById">
         UPDATE goods SET quantity = (quantity-#{num})  WHERE goods_id=#{id};
     </update>
+    <update id="addQuantityById">
+        UPDATE goods SET quantity = (quantity+#{num})  WHERE goods_id=#{id};
+    </update>
+<!--    public void disable(Integer id);-->
+    <update id="disable">
+         UPDATE goods SET on_sale=0  WHERE goods_id=#{id};
+    </update>
+<!--    public List<Goods> searchGoodsByCondition(GoodsSearchCondition goodsSearchCondition);-->
+    <select id="searchGoodsByCondition" resultType="com.dgut.ssm.bean.Goods" parameterType="com.dgut.ssm.bean.GoodsSearchCondition">
+        select * FROM goods
+        <trim prefix="where" prefixOverrides="and">
+            <if test="goodsId != null">
+                and goods_id=#{goodsId}
+            </if>
+            <if test="name !=null and name.trim() !='' ">
+                and name =#{name}
+            </if>
+            <if test="minPrice != null">
+                    and price>#{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                and price <![CDATA[<]]> #{maxPrice}
+            </if>
+            <if test="minQuantity != null">
+                and price>#{minQuantity}
+            </if>
+            <if test="maxQuantity != null">
+                and price <![CDATA[<]]> #{maxQuantity}
+            </if>
+        </trim>
+    </select>
 </mapper>

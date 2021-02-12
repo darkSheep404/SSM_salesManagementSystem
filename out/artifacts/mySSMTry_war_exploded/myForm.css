@@ -1,5 +1,5 @@
 button {
-    width: 60px;
+    width: auto;
     align-self: flex-end;
     height: 35px;
     font-size: 14px;
@@ -14,7 +14,7 @@ button {
     display: inline-block;
     float: left;
     width: 80px;
-    height: 40px;
+    min-height: 40px;
     vertical-align: middle;
     line-height: 40px;
     vertical-align: center

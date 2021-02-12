@@ -17,4 +17,7 @@ public interface FormDao {
     public SalesForm getFormById(Integer id);
     public void InsertLog(SaleLog log);
     public List<SaleLog> getAllLog();
+    public List<SalesForm> getFormListByContactId(Integer id);
+    public void insertForm(Integer contactId,Integer goodsId,Integer quantity);
+    List<SalesForm> getAllFormBeforeRun();/*返回所有未生成发货单的*/
 }

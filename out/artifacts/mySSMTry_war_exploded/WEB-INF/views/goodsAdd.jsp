@@ -13,15 +13,7 @@
     <link type="text/css" rel="styleSheet"  href="../../myForm.css" />
     </head>
 <body>
-<%--<h4>商品添加页面</h4>
-<jsp:useBean id="goods" class="com.dgut.ssm.bean.Goods" scope="request"/>
-<form:form  modelAttribute="goods" action="${pageContext.request.contextPath}/goods/add" method="post">
-    goodsId:<form:input path="goodsId"/><br>
-    Name:<form:input path="name"/><br>
-    Price:<form:input path="price"/><br>
-    Quantity:<form:input path="quantity"/><br>
-    <input type="submit">
-</form:form>--%>
+
 <div class="form-warpper">
     <h4>商品添加页面</h4>
 
@@ -33,7 +25,7 @@
         <button type="submit">Submit</button>
     </form>
 </div>
-<%--TODO:设置添加页面的上架状态默认为true，不传递onSale值过去--%>
+
 </body>
 </html>
 

@@ -10,73 +10,66 @@
 <html>
 <head>
     <title>Title</title>
-    <link type="text/css" rel="styleSheet"  href="../../mytable.css" />
-    <link type="text/css" rel="styleSheet"  href="../../leftBar.css" />
+    <link type="text/css" rel="styleSheet" href="../../mytable.css"/>
+    <link type="text/css" rel="styleSheet" href="../../leftBar.css"/>
+    <style>
+        .spanLabel {
+            width: 120px;
+        }
+    </style>
 </head>
 <body>
 <div class="leftBar">
-    <div class="leftLink"><a href="${pageContext.request.contextPath}/contact/list" class="button-href">合同管理</a></div>
-    <div class="leftLink"><a href="${pageContext.request.contextPath}/goods/list" class="button-href">商品管理</a></div>
-    <div class="leftLink"><a href="${pageContext.request.contextPath}/forms/list" class="button-href">发货管理</a></div>
+    <%--TODO 销售管理员标准左侧栏--%>
+    <div><h2 class="button-href">销售管理</h2></div>
+        <div class="leftLink"><a href="${pageContext.request.contextPath}/contact/list" class="button-href">合同管理</a></div>
+        <div class="leftLink"><a href="${pageContext.request.contextPath}/custom/list" class="button-href">客户管理</a></div>
+        <div class="leftLink"><a href="${pageContext.request.contextPath}/salesman/list" class="button-href">销售管理</a></div>
+        <div class="leftLink"><a href="${pageContext.request.contextPath}/groupBy/goods" class="button-href">销售统计</a></div>
+        <div class="leftLink"><a href="${pageContext.request.contextPath}/index.jsp" class="button-href">注销</a></div>
 </div>
 <div class="middle">
-<div class="taleContainer">
-<h4>合同清单</h4>
-<button ><a href="${pageContext.request.contextPath }/goods/goodsAdd" class="button-href">添加</a></button>
-<table>
-    <c:if test="${requestScope.contacts == null}">
-        没有
-    </c:if>
-    <tr>
-        <th>ID</th>
-        <th>客户</th>
-        <th>销售员</th>
-        <th>履行状态</th>
-        <th>未发货的发货单</th>
-        <th>Update</th>
-        <th>Delete</th>
-    </tr>
-    <c:forEach items="${requestScope.contacts}" var="co">
-        <tr>
-            <td>${co.contactId}</td>
-            <td>${co.custom.customName}</td>
-            <td>${co.salesman.salesmanName}</td>
-            <td>${co.runStatus}</td>
-            <td>${co.notdelivery}</td>
-            <td><a href="${pageContext.request.contextPath}/goods/edit/${g.goodsId}">update</a> </td>
-            <td><a href="${pageContext.request.contextPath}/goods/del/${g.goodsId}">delete</a> </td>
-        </tr>
-    </c:forEach>
-</table>
-
-</div>
-<div class="taleContainer">
-<h4>采购清单</h4>
-<table >
-    <th>合同id</th>
-    <th>采购单Id</th>
-    <th>商品Id</th>
-    <th>商品数量</th>
-    <th>已生成发货单</th>
-    <th>操作</th>
-    <c:forEach items="${requestScope.contacts}" var="co">
-        <c:forEach items="${co.salesForms}" var="s">
+    <form class="search" id="contact" action="/contact/search" method="get">
+        <div class="searchItem"> <div class="spanLabel">合同编号：</div><input name="contactId" value="" type="number"></div>
+        <div class="searchItem"><div class="spanLabel">销售员名称：</div><input name="salesmanName" value="" type="text"></div>
+        <div class="searchItem"><div class="spanLabel">客户名称：</div><input name="customName" value="" type="text"></div>
+        <input type="submit" value="search"/>
+    </form>
+    <div class="taleContainer">
+        <h4>合同清单</h4>
+        <button><a href="${pageContext.request.contextPath }/contact/add" class="button-href">添加</a></button>
+        <table>
+            <c:if test="${requestScope.contacts == null}">
+                没有
+            </c:if>
+            <tr>
+                <th>ID</th>
+                <th>客户</th>
+                <th>销售员</th>
+                <th>履行状态</th>
+                <th>详情</th>
+            </tr>
+            <c:forEach items="${requestScope.contacts}" var="co">
                 <tr>
-                    <td>${s.contactId}</td>
-                    <td>${s.formId}</td>
-                    <td>${s.goodsId}</td>
-                    <td>${s.quantity}</td>
-                    <td>${s.generateStatus}</td>
-                    <td><button style="width: auto" >
-                        <%--需要比较商品库存，采购的商品数目,更改合同属性，与当前表单完成状态，需要使用除表单id外所有属性--%>
-                           <%-- <a href="${pageContext.request.contextPath}/contact/run/${co.contactId}/${s.quantity}/${s.goodsId}"/>--%>
-                            <a class="button-href" href="${pageContext.request.contextPath}/contact/run/${s.formId}">生成发货单</a>
-                    </button></td>
+                    <td>${co.contactId}</td>
+                    <td>${co.custom.customName}</td>
+                    <td>${co.salesman.salesmanName}</td>
+                    <c:if test="${co.runStatus ==true&&co.notdelivery<=0}">
+                        <td>履行完毕</td>
+                    </c:if>
+                    <c:if test="${co.runStatus ==false}">
+                        <td>未履行</td>
+                    </c:if>
+                    <c:if test="${co.runStatus ==true&&co.notdelivery>0}">
+                        <td>履行中</td>
+                    </c:if>
+                    <td><a href="${pageContext.request.contextPath}/contact/detail/${co.contactId}">详情</a></td>
                 </tr>
-        </c:forEach>
-    </c:forEach>
-</table>
-</div>
+            </c:forEach>
+        </table>
+
+    </div>
+
 </div>
 </body>
 </html>

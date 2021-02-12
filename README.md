@@ -19,3 +19,5 @@ From github.com:SFAfreshman/SSM_salesManagementSystem
 ### v0.2
 > 调整了form表单和表格的样式
 > 实现了合同类的关联查询
+### v1.0
+> 实现了所有功能

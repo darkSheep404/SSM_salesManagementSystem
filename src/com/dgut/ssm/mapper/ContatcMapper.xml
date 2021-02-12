@@ -34,7 +34,7 @@ LEFT JOIN salesman s ON co.salesman_id= s.salesman_id WHERE co.contact_id=#{id}
 <!--    public Contact getContactByIdWithForm(Integer id);//带采购单的查询-->
 <!--    public Contact getContactByIdWithAll(Integer id);//携带所有信息的查询-->
     <select id="getContactByIdWithAll" resultMap="ContactByIdWithAll">
-        SELECT co.contact_id,co.notdelivery,cu.custom_id,cu.custom_name,cu.custom_phone,cu.custom_company, s.salesman_id ,s.salesman_name,s.salesman_phone,sf.contact_id,sf.form_id,sf.goods_id,sf.quantity,sf.generate_status,sf.delivery_status FROM 
+        SELECT co.contact_id,co.notdelivery,co.run_status,cu.custom_id,cu.custom_name,cu.custom_phone,cu.custom_company, s.salesman_id ,s.salesman_name,s.salesman_phone,sf.contact_id,sf.form_id,sf.goods_id,sf.quantity,sf.generate_status,sf.delivery_status FROM
 ((contact co LEFT JOIN custom cu ON co.custom_id=cu.custom_id)
 LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  ON sf.contact_id=co.contact_id WHERE co.contact_id=#{id}
     </select>
@@ -72,4 +72,37 @@ LEFT JOIN salesman s ON co.salesman_id= s.salesman_id) LEFT JOIN salesform sf  O
     <update id="reduceUnfinishedNum">
         UPDATE contact SET notdelivery = notdelivery-1,run_status=1 WHERE contact_id=#{id};
     </update>
+<!--    insertContactWithPerson-->
+    <insert id="insertContactWithPerson" keyProperty="contact.contactId" useGeneratedKeys="true" parameterType="com.dgut.ssm.bean.Contact">
+        INSERT INTO contact (`custom_id`, `salesman_id`) VALUES (#{customId}, #{salesmanId})
+    </insert>
+<!--    public void delContactById(Integer id);-->
+    <delete id="delContactById">
+        DELETE FROM contact WHERE `contact_id` = #{id};
+    </delete>
+<!--    public void deliveryFormAdd(Integer id);-->
+    <update id="deliveryFormAdd">
+        UPDATE contact SET notdelivery = notdelivery+1 WHERE contact_id=#{id};
+    </update>
+<!--    public void updateContactWithPerson(Contact contact);-->
+    <update id="updateContactWithPerson" parameterType="com.dgut.ssm.bean.Contact">
+        update  contact SET custom_id=#{customId},salesman_id=#{salesmanId} WHERE contact_id=#{contactId}
+    </update>
+
+    <select id="searchContactByCondition" resultMap="ContactWithPerson">
+      SELECT co.contact_id,co.notdelivery,cu.custom_id,cu.custom_name,cu.custom_phone,cu.custom_company, s.salesman_id ,s.salesman_name,s.salesman_phone FROM
+(contact co LEFT JOIN custom cu ON co.custom_id=cu.custom_id)
+LEFT JOIN salesman s ON co.salesman_id= s.salesman_id
+        <trim prefix="where" prefixOverrides="and">
+            <if test="contactId != null">
+                and contact_id=#{contactId}
+            </if>
+            <if test="salesmanName !=null and salesmanName.trim() !='' ">
+                and salesman_name LIKE concat('%',#{salesmanName},'%')
+            </if>
+            <if test="customName !=null and customName.trim() !='' ">
+                and custom_name LIKE concat('%',#{customName},'%')
+            </if>
+        </trim>
+    </select>
 </mapper>

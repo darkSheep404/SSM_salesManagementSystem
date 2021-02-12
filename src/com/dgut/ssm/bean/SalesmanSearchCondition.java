@@ -1,40 +1,31 @@
 package com.dgut.ssm.bean;
 
-public class CustomSearchCondition {
-    private Integer customId;
-    private String customName;
-    private String customCompany;
-    private String customPhone;
+public class SalesmanSearchCondition {
+    private Integer salesmanId;
+    private String salesmanName;
+    private String salesmanPhone;
 
-    public Integer getCustomId() {
-        return customId;
+    public Integer getSalesmanId() {
+        return salesmanId;
     }
 
-    public void setCustomId(Integer customId) {
-        this.customId = customId;
+    public void setSalesmanId(Integer salesmanId) {
+        this.salesmanId = salesmanId;
     }
 
-    public String getCustomName() {
-        return customName;
+    public String getSalesmanName() {
+        return salesmanName;
     }
 
-    public void setCustomName(String customName) {
-        this.customName = customName;
+    public void setSalesmanName(String salesmanName) {
+        this.salesmanName = salesmanName;
     }
 
-    public String getCustomCompany() {
-        return customCompany;
+    public String getSalesmanPhone() {
+        return salesmanPhone;
     }
 
-    public void setCustomCompany(String customCompany) {
-        this.customCompany = customCompany;
-    }
-
-    public String getCustomPhone() {
-        return customPhone;
-    }
-
-    public void setCustomPhone(String customPhone) {
-        this.customPhone = customPhone;
+    public void setSalesmanPhone(String salesmanPhone) {
+        this.salesmanPhone = salesmanPhone;
     }
 }
