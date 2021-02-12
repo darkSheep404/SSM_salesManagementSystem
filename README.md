@@ -34,14 +34,16 @@ From github.com:SFAfreshman/SSM_salesManagementSystem
 > 实现了所有功能
 >没有怎么接触前端的人手撸的css,丑确实挺丑的2333
 ### ER图与实体类类图
->![DB_Class.png](res\DB_Class.png)
->![DB_ER.png](res\DB_ER.png)
+>![DB_Class.png](.\res\DB_Class.png)
+
+>![DB_ER.png](.\res\DB_ER.png)
 #### 用例图
->![UseCase01.png](res\UseCase01.png)
->![UseCase02.png](res\UseCase02.png)
+>![UseCase01.png](.\res\UseCase01.png)
+
+>![UseCase02.png](.\res\UseCase02.png)
 #### 登录页
->![index.png](\res\index.png)
+>![index.png](.\res\index.png)
 #### 仓库管理员首页
->![adminStore.png](\res\adminStore.png)
+>![adminStore.png](.\res\adminStore.png)
 #### 一个完成度不高的实验报告
-[一个完成度不高的实验报告](\res\课程实验报告.docx)]
+[一个完成度不高的实验报告](.\res\课程实验报告.docx)]
